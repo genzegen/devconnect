@@ -1,3 +1,5 @@
+DevConnect
+
 DevConnect is a full-stack web application built using React for the frontend and Django for the backend.
 
 This project is learning practice for myself to understand and improve my React and full-stack application knowledge.
