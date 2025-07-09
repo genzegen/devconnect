@@ -21,5 +21,27 @@ def register_user(request):
     user = User.objects.create_user(username=username, password=password)
     return Response({"message": "User created successfully."}, status=201)
 
+@api_view(['POST'])
 def login_user(request):
-    return Response({"message": "Login endpoint not implemented."}, status=status.HTTP_501_NOT_IMPLEMENTED)
+    username = request.data.get('username')
+    password = request.data.get('password')
+    
+    if not username or not password:
+        return Response({"error": "Username and password are required."}, status=status.HTTP_400_BAD_REQUEST)
+    
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return Response({"error": "User does not exist."}, status=status.HTTP_404_NOT_FOUND)
+    
+    if not user.check_password(password):
+        return Response({"error": "Incorrect password."}, status=status.HTTP_401_UNAUTHORIZED)
+    
+    return Response({"message": "Login successful."}, status=status.HTTP_200_OK)
+
+api_view(['POST'])
+def home_view(request):
+    if request.method == 'POST':
+        return Response({"message": "Welcome to the home page!"}, status=status.HTTP_200_OK)
+
+

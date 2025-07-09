@@ -24,7 +24,7 @@ export default function Login() {
       setForm({ username: '', password: '' });
 
       setTimeout(() => {
-        navigate('/'); // Change path if needed
+        navigate('/');
       }, 1000);
     } catch (err) {
       setMessage(err.response?.data?.error || 'Login failed');
@@ -36,7 +36,7 @@ export default function Login() {
     container: {
       width: '100%',
       maxWidth: '400px',
-      height: '260px',
+      height: '280px',
       margin: '20px auto',
       padding: '30px',
       borderRadius: '8px',
